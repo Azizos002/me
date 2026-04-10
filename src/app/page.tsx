@@ -1,8 +1,8 @@
 import { HeroSection } from "@/components/hero/HeroSection";
 import { PortfolioNavbar } from "@/components/layout/PortfolioNavbar";
 import { AboutSection } from "@/components/sections/AboutSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { SectionShell } from "@/components/sections/SectionShell";
 import { SkillsSection } from "@/components/sections/SkillsSection";
 
 export default function Home() {
@@ -18,12 +18,7 @@ export default function Home() {
         <AboutSection />
         <SkillsSection />
         <ProjectsSection />
-
-        <SectionShell
-          id="contact"
-          title="Contact"
-          subtitle="Section framework ready for your contact channels and collaboration call-to-action."
-        />
+        <ContactSection />
       </main>
     </>
   );
