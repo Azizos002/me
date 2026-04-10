@@ -2,19 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background: #050505;
-  color: white;
-  font-family: system-ui, sans-serif;
+:root {
+  color-scheme: dark;
 }
 
-/* Smooth scroll */
+body {
+  background: #02050d;
+  color: white;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Selection color */
 ::selection {
-  background: #00f0ff;
-  color: black;
+  background: #22d3ee;
+  color: #020617;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseNode {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes linkFlicker {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes packetMove {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate3d(20px, -18px, 0);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(-14px, -38px, 0);
+    opacity: 0;
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.node-pulse {
+  animation: pulseNode 3.2s ease-in-out infinite;
+}
+
+.network-link {
+  animation: linkFlicker 3.4s ease-in-out infinite;
+}
+
+.data-packet {
+  animation: packetMove 7s linear infinite;
+}
+
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-down {
+  animation: fadeDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
