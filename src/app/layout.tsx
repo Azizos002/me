@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Aziz Dhifaoui | Full Stack & Network Expert",
+  title: "Aziz Dhifaoui | Full Stack JS & Network Expert",
   description:
     "Portfolio of a Full Stack JavaScript Developer and Network Expert.",
 };
