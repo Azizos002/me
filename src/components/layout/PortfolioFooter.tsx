@@ -1,15 +1,15 @@
 const socialLinks = [
   {
     label: "GitHub",
-    href: "https://github.com/azizdhifaoui",
+    href: "https://github.com/azizos002",
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/azizdhifaoui",
+    href: "https://www.linkedin.com/in/aziz-dhifaoui-legacy",
   },
   {
     label: "Email",
-    href: "mailto:hello@azizdhifaoui.dev",
+    href: "mailto:azizdhifaoui06@gmail.com",
   },
 ];
 
