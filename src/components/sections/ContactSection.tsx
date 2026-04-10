@@ -110,7 +110,7 @@ export function ContactSection() {
                   className="group rounded-xl border border-cyan-200/15 bg-cyan-400/[0.05] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-cyan-400/[0.1]"
                 >
                   <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/75">{method.label}</p>
-                  <p className="mt-2 text-sm text-slate-100 transition group-hover:text-cyan-100">{method.value}</p>
+                  <p className="mt-2 text-sm text-slate-100 truncate">{method.value}</p>
                 </a>
               ))}
             </div>
