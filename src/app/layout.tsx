@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: "Aziz Dhifaoui | Full Stack JS & Network Expert",
   description:
