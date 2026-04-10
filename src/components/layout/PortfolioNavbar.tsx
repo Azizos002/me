@@ -26,10 +26,18 @@ export function PortfolioNavbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
       <nav
         className={`mx-auto w-full max-w-6xl rounded-2xl border transition-all duration-500 ${
           isScrolled
@@ -38,18 +46,19 @@ export function PortfolioNavbar() {
         } animate-fade-down`}
         aria-label="Primary"
       >
-        <div className="flex items-center justify-between px-5 py-4">
+        <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-5 sm:py-4">
           <Link
             href="#home"
-            className="group inline-flex items-center gap-2 text-sm font-medium tracking-[0.18em] text-cyan-100"
+            className="group inline-flex min-w-0 items-center gap-2 text-[11px] font-medium tracking-[0.14em] text-cyan-100 sm:text-sm sm:tracking-[0.18em]"
+            onClick={closeMenu}
           >
             <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.95)] transition-transform duration-300 group-hover:scale-125" />
-            AZIZ DHIFAOUI
+            <span className="truncate">AZIZ DHIFAOUI</span>
           </Link>
 
           <button
             type="button"
-            className="inline-flex items-center rounded-md border border-cyan-200/25 p-2 text-cyan-100 transition hover:border-cyan-200/60 hover:bg-cyan-400/10 md:hidden"
+            className="inline-flex min-h-10 items-center rounded-md border border-cyan-200/25 p-2 text-cyan-100 transition hover:border-cyan-200/60 hover:bg-cyan-400/10 md:hidden"
             onClick={() => setIsMenuOpen((prev) => !prev)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -80,16 +89,16 @@ export function PortfolioNavbar() {
         <div
           id="mobile-menu"
           className={`overflow-hidden transition-[max-height,opacity] duration-300 md:hidden ${
-            isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+            isMenuOpen ? "max-h-[75vh] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <ul className="space-y-1 px-4 pb-4">
+          <ul className="space-y-1 px-4 pb-4 pt-1 sm:px-5">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={closeMenu}
-                  className="block rounded-md px-3 py-2.5 text-sm text-slate-200 transition duration-300 hover:bg-cyan-500/10 hover:text-cyan-100"
+                  className="block rounded-md px-3 py-3 text-sm text-slate-200 transition duration-300 hover:bg-cyan-500/10 hover:text-cyan-100"
                 >
                   {item.label}
                 </Link>

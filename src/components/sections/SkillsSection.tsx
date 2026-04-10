@@ -31,9 +31,9 @@ const skillGroups = [
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="relative border-t border-cyan-200/10 px-6 py-24 sm:py-28">
+    <section id="skills" className="relative border-t border-cyan-200/10 px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <div className="rounded-2xl border border-cyan-100/10 bg-slate-950/35 p-8 backdrop-blur-sm sm:p-10">
+        <div className="rounded-2xl border border-cyan-100/10 bg-slate-950/35 p-6 backdrop-blur-sm sm:p-10">
           <p className="text-xs uppercase tracking-[0.25em] text-cyan-200/80">Skills</p>
           <h2 className="mt-3 text-2xl font-semibold text-slate-100 sm:text-3xl">Systems-focused technical stack</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

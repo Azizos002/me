@@ -1,8 +1,8 @@
 export function AboutSection() {
   return (
-    <section id="about" className="relative border-t border-cyan-200/10 px-6 py-24 sm:py-28">
+    <section id="about" className="relative border-t border-cyan-200/10 px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <article className="rounded-2xl border border-cyan-100/10 bg-slate-950/35 p-8 backdrop-blur-sm sm:p-10">
+        <article className="rounded-2xl border border-cyan-100/10 bg-slate-950/35 p-6 backdrop-blur-sm sm:p-10">
           <p className="text-xs uppercase tracking-[0.25em] text-cyan-200/80">About</p>
           <h2 className="mt-3 text-2xl font-semibold text-slate-100 sm:text-3xl">
             Full Stack Engineer × Network Expert × System Builder
@@ -23,7 +23,7 @@ export function AboutSection() {
           </p>
         </article>
 
-        <aside className="rounded-2xl border border-cyan-100/10 bg-slate-950/35 p-8 backdrop-blur-sm sm:p-10">
+        <aside className="rounded-2xl border border-cyan-100/10 bg-slate-950/35 p-6 backdrop-blur-sm sm:p-10">
           <p className="text-xs uppercase tracking-[0.25em] text-cyan-200/80">Experience Highlights</p>
           <ul className="mt-6 space-y-4">
             <li className="rounded-xl border border-cyan-300/10 bg-cyan-500/5 p-4">

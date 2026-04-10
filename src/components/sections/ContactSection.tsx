@@ -76,7 +76,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative border-t border-cyan-200/10 px-6 py-24 sm:py-28">
+    <section id="contact" className="relative border-t border-cyan-200/10 px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl space-y-8">
         <div className="grid gap-6 lg:grid-cols-3">
           {quickStats.map((item, index) => (
@@ -92,7 +92,7 @@ export function ContactSection() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <article className="rounded-3xl border border-cyan-100/10 bg-slate-950/45 p-8 backdrop-blur-md sm:p-10">
+          <article className="rounded-3xl border border-cyan-100/10 bg-slate-950/45 p-6 backdrop-blur-md sm:p-10">
             <p className="text-xs uppercase tracking-[0.25em] text-cyan-200/80">Contact</p>
             <h2 className="mt-3 text-2xl font-semibold text-slate-100 sm:text-3xl">Let&apos;s build resilient, high-impact systems together.</h2>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
@@ -110,20 +110,20 @@ export function ContactSection() {
                   className="group rounded-xl border border-cyan-200/15 bg-cyan-400/[0.05] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-cyan-400/[0.1]"
                 >
                   <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/75">{method.label}</p>
-                  <p className="mt-2 text-sm text-slate-100 truncate">{method.value}</p>
+                  <p className="mt-2 break-all text-sm text-slate-100 sm:break-normal sm:truncate">{method.value}</p>
                 </a>
               ))}
             </div>
 
             <a
               href="/resume.pdf"
-              className="mt-7 inline-flex rounded-md border border-cyan-300/40 bg-cyan-500/10 px-5 py-2.5 text-sm font-medium text-cyan-100 transition hover:-translate-y-0.5 hover:border-cyan-200 hover:bg-cyan-500/20"
+              className="mt-7 inline-flex min-h-11 items-center rounded-md border border-cyan-300/40 bg-cyan-500/10 px-5 py-2.5 text-sm font-medium text-cyan-100 transition hover:-translate-y-0.5 hover:border-cyan-200 hover:bg-cyan-500/20"
             >
               Download CV / Resume
             </a>
           </article>
 
-          <article className="rounded-3xl border border-cyan-100/10 bg-slate-950/45 p-8 backdrop-blur-md sm:p-10">
+          <article className="rounded-3xl border border-cyan-100/10 bg-slate-950/45 p-6 backdrop-blur-md sm:p-10">
             <p className="text-xs uppercase tracking-[0.25em] text-cyan-200/80">Credibility</p>
             <h3 className="mt-3 text-xl font-semibold text-slate-100">Engineering profile at a glance</h3>
 
@@ -148,7 +148,7 @@ export function ContactSection() {
                 onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
                 placeholder="Your name"
                 required
-                className="w-full rounded-lg border border-slate-700/80 bg-slate-900/70 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-cyan-300/50"
+                className="w-full rounded-lg border border-slate-700/80 bg-slate-900/70 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-cyan-300/50"
               />
               <input
                 type="email"
@@ -157,7 +157,7 @@ export function ContactSection() {
                 onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
                 placeholder="Your email"
                 required
-                className="w-full rounded-lg border border-slate-700/80 bg-slate-900/70 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-cyan-300/50"
+                className="w-full rounded-lg border border-slate-700/80 bg-slate-900/70 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-cyan-300/50"
               />
               <textarea
                 name="message"
@@ -166,14 +166,14 @@ export function ContactSection() {
                 placeholder="Project brief"
                 rows={4}
                 required
-                className="w-full resize-none rounded-lg border border-slate-700/80 bg-slate-900/70 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-cyan-300/50"
+                className="w-full resize-none rounded-lg border border-slate-700/80 bg-slate-900/70 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-cyan-300/50"
               />
               {successMessage ? <p className="text-sm text-emerald-300">{successMessage}</p> : null}
               {errorMessage ? <p className="text-sm text-rose-300">{errorMessage}</p> : null}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-lg border border-cyan-300/35 bg-cyan-500/10 px-4 py-2.5 text-sm font-medium text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-500/20 disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full rounded-lg border border-cyan-300/35 bg-cyan-500/10 px-4 py-3 text-sm font-medium text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-500/20 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {isSubmitting ? "Sending..." : "Send Inquiry"}
               </button>

@@ -13,7 +13,7 @@ function ProjectCard({ project, emphasize = false }: ProjectCardProps) {
 
   return (
     <article
-      className={`group relative overflow-hidden rounded-2xl border border-cyan-100/15 bg-slate-950/45 p-6 backdrop-blur-md transition duration-500 hover:-translate-y-1 hover:border-cyan-300/40 hover:shadow-[0_0_45px_rgba(34,211,238,0.2)] ${
+      className={`group relative overflow-hidden rounded-2xl border border-cyan-100/15 bg-slate-950/45 p-5 backdrop-blur-md transition duration-500 hover:-translate-y-1 hover:border-cyan-300/40 hover:shadow-[0_0_45px_rgba(34,211,238,0.2)] sm:p-6 ${
         emphasize ? "lg:p-8" : ""
       }`}
     >
@@ -29,7 +29,7 @@ function ProjectCard({ project, emphasize = false }: ProjectCardProps) {
           ) : null}
         </div>
 
-        <h3 className={`mt-4 font-semibold text-slate-100 ${emphasize ? "text-2xl" : "text-lg"}`}>{title}</h3>
+        <h3 className={`mt-4 font-semibold text-slate-100 ${emphasize ? "text-xl sm:text-2xl" : "text-lg"}`}>{title}</h3>
         <p className="mt-3 text-sm leading-relaxed text-slate-300">{description}</p>
 
         <ul className="mt-4 flex flex-wrap gap-2">
@@ -43,18 +43,18 @@ function ProjectCard({ project, emphasize = false }: ProjectCardProps) {
           ))}
         </ul>
 
-        <div className="mt-6 flex flex-wrap items-center gap-3 text-sm">
+        <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
           {githubUrl ? (
             <a
               href={githubUrl}
               target="_blank"
               rel="noreferrer"
-              className="rounded-md border border-cyan-300/40 px-3 py-1.5 text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-500/10"
+              className="inline-flex min-h-10 items-center justify-center rounded-md border border-cyan-300/40 px-3 py-1.5 text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-500/10"
             >
               GitHub
             </a>
           ) : (
-            <span className="rounded-md border border-slate-700/70 px-3 py-1.5 text-slate-400">GitHub on request</span>
+            <span className="inline-flex min-h-10 items-center justify-center rounded-md border border-slate-700/70 px-3 py-1.5 text-slate-400">GitHub on request</span>
           )}
 
           {liveDemoUrl ? (
@@ -62,12 +62,12 @@ function ProjectCard({ project, emphasize = false }: ProjectCardProps) {
               href={liveDemoUrl}
               target="_blank"
               rel="noreferrer"
-              className="rounded-md border border-slate-500/70 px-3 py-1.5 text-slate-200 transition hover:border-cyan-300/40 hover:text-cyan-100"
+              className="inline-flex min-h-10 items-center justify-center rounded-md border border-slate-500/70 px-3 py-1.5 text-slate-200 transition hover:border-cyan-300/40 hover:text-cyan-100"
             >
               Live Demo
             </a>
           ) : (
-            <span className="rounded-md border border-slate-700/70 px-3 py-1.5 text-slate-500">Live demo optional</span>
+            <span className="inline-flex min-h-10 items-center justify-center rounded-md border border-slate-700/70 px-3 py-1.5 text-slate-500">Live demo optional</span>
           )}
         </div>
       </div>
@@ -89,9 +89,9 @@ export function ProjectsSection() {
   }, [activeCategory, featuredProjects]);
 
   return (
-    <section id="projects" className="relative border-t border-cyan-200/10 px-6 py-24 sm:py-28">
+    <section id="projects" className="relative border-t border-cyan-200/10 px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <div className="rounded-3xl border border-cyan-100/10 bg-slate-950/40 p-8 backdrop-blur-md sm:p-10">
+        <div className="rounded-3xl border border-cyan-100/10 bg-slate-950/40 p-6 backdrop-blur-md sm:p-10">
           <p className="text-xs uppercase tracking-[0.25em] text-cyan-200/80">Projects</p>
           <h2 className="mt-3 text-2xl font-semibold text-slate-100 sm:text-3xl">Real systems. Real clients. Real engineering depth.</h2>
           <p className="mt-3 max-w-3xl text-sm text-slate-300 sm:text-base">
@@ -99,13 +99,13 @@ export function ProjectsSection() {
             infrastructure-aware workflows, and product-focused delivery.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-2">
+          <div className="-mx-1 mt-8 flex gap-2 overflow-x-auto px-1 pb-1">
             {projectCategories.map((category) => (
               <button
                 key={category}
                 type="button"
                 onClick={() => setActiveCategory(category)}
-                className={`rounded-md px-3.5 py-1.5 text-sm transition-all duration-300 ${
+                className={`shrink-0 rounded-md px-3.5 py-2 text-sm transition-all duration-300 ${
                   activeCategory === category
                     ? "border border-cyan-200/50 bg-cyan-500/15 text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,0.2)]"
                     : "border border-slate-700/80 text-slate-300 hover:border-cyan-300/40 hover:text-cyan-100"
