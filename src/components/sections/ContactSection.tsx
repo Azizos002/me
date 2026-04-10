@@ -140,7 +140,7 @@ export function ContactSection() {
             </ul>
 
             <form className="mt-6 space-y-3" aria-label="Contact form preview" onSubmit={handleSubmit}>
-              <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/75">Quick message (UI preview)</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/75">Get in touch</p>
               <input
                 type="text"
                 name="name"
