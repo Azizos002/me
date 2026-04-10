@@ -1,92 +1,113 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { projectCategories, ProjectCategory, projectStructureSeed } from "@/data/projects";
+import { projectCategories, ProjectCategory, projectItems, ProjectItem } from "@/data/projects";
 
 type ProjectCardProps = {
-  title: string;
-  description: string;
-  techStack: string[];
-  category: ProjectCategory;
-  githubUrl?: string;
-  liveDemoUrl?: string;
+  project: ProjectItem;
+  emphasize?: boolean;
 };
 
-function ProjectCard({ title, description, techStack, category, githubUrl, liveDemoUrl }: ProjectCardProps) {
+function ProjectCard({ project, emphasize = false }: ProjectCardProps) {
+  const { title, description, techStack, category, githubUrl, liveDemoUrl } = project;
+
   return (
-    <article className="group rounded-2xl border border-cyan-100/10 bg-slate-950/40 p-6 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-[0_0_35px_rgba(34,211,238,0.12)]">
-      <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/70">{category}</p>
-      <h3 className="mt-3 text-lg font-semibold text-slate-100">{title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-slate-300">{description}</p>
+    <article
+      className={`group relative overflow-hidden rounded-2xl border border-cyan-100/15 bg-slate-950/45 p-6 backdrop-blur-md transition duration-500 hover:-translate-y-1 hover:border-cyan-300/40 hover:shadow-[0_0_45px_rgba(34,211,238,0.2)] ${
+        emphasize ? "lg:p-8" : ""
+      }`}
+    >
+      <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-cyan-400/10 blur-2xl transition duration-500 group-hover:bg-cyan-300/20" />
 
-      <ul className="mt-4 flex flex-wrap gap-2">
-        {techStack.map((tech) => (
-          <li key={tech} className="rounded-md border border-slate-700/80 bg-slate-900/70 px-2.5 py-1 text-xs text-slate-300">
-            {tech}
-          </li>
-        ))}
-      </ul>
+      <div className="relative z-10">
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-xs uppercase tracking-[0.22em] text-cyan-200/80">{category}</p>
+          {project.featured ? (
+            <span className="rounded-full border border-cyan-300/30 bg-cyan-400/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-cyan-100">
+              Featured
+            </span>
+          ) : null}
+        </div>
 
-      <div className="mt-5 flex items-center gap-3 text-sm">
-        <a
-          href={githubUrl ?? "#"}
-          className="rounded-md border border-cyan-300/30 px-3 py-1.5 text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-500/10"
-        >
-          GitHub link
-        </a>
-        <a
-          href={liveDemoUrl ?? "#"}
-          className="rounded-md border border-slate-600/60 px-3 py-1.5 text-slate-300 transition hover:border-cyan-300/40 hover:text-cyan-100"
-        >
-          Live demo
-        </a>
+        <h3 className={`mt-4 font-semibold text-slate-100 ${emphasize ? "text-2xl" : "text-lg"}`}>{title}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-slate-300">{description}</p>
+
+        <ul className="mt-4 flex flex-wrap gap-2">
+          {techStack.map((tech) => (
+            <li
+              key={tech}
+              className="rounded-md border border-slate-700/80 bg-slate-900/70 px-2.5 py-1 text-xs text-slate-300 transition group-hover:border-cyan-300/40 group-hover:text-cyan-100"
+            >
+              {tech}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-6 flex flex-wrap items-center gap-3 text-sm">
+          {githubUrl ? (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-md border border-cyan-300/40 px-3 py-1.5 text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-500/10"
+            >
+              GitHub
+            </a>
+          ) : (
+            <span className="rounded-md border border-slate-700/70 px-3 py-1.5 text-slate-400">GitHub on request</span>
+          )}
+
+          {liveDemoUrl ? (
+            <a
+              href={liveDemoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-md border border-slate-500/70 px-3 py-1.5 text-slate-200 transition hover:border-cyan-300/40 hover:text-cyan-100"
+            >
+              Live Demo
+            </a>
+          ) : (
+            <span className="rounded-md border border-slate-700/70 px-3 py-1.5 text-slate-500">Live demo optional</span>
+          )}
+        </div>
       </div>
     </article>
   );
 }
 
 export function ProjectsSection() {
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory | "All">("All");
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("Featured");
+
+  const featuredProjects = useMemo(() => projectItems.filter((project) => project.featured), []);
 
   const filteredProjects = useMemo(() => {
-    if (activeCategory === "All") {
-      return projectStructureSeed;
+    if (activeCategory === "Featured") {
+      return featuredProjects;
     }
 
-    return projectStructureSeed.filter((project) => project.category === activeCategory);
-  }, [activeCategory]);
+    return projectItems.filter((project) => project.category === activeCategory);
+  }, [activeCategory, featuredProjects]);
 
   return (
     <section id="projects" className="relative border-t border-cyan-200/10 px-6 py-24 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <div className="rounded-2xl border border-cyan-100/10 bg-slate-950/35 p-8 backdrop-blur-sm sm:p-10">
+        <div className="rounded-3xl border border-cyan-100/10 bg-slate-950/40 p-8 backdrop-blur-md sm:p-10">
           <p className="text-xs uppercase tracking-[0.25em] text-cyan-200/80">Projects</p>
-          <h2 className="mt-3 text-2xl font-semibold text-slate-100 sm:text-3xl">Project architecture ready for detailed case studies</h2>
+          <h2 className="mt-3 text-2xl font-semibold text-slate-100 sm:text-3xl">Real systems. Real clients. Real engineering depth.</h2>
           <p className="mt-3 max-w-3xl text-sm text-slate-300 sm:text-base">
-            Structured around your real portfolio work. Cards already support title, description, tech stack,
-            category, GitHub, and optional live demo links.
+            A curated selection of enterprise, freelance, and AI-driven projects built across full-stack platforms,
+            infrastructure-aware workflows, and product-focused delivery.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => setActiveCategory("All")}
-              className={`rounded-md px-3 py-1.5 text-sm transition ${
-                activeCategory === "All"
-                  ? "border border-cyan-200/40 bg-cyan-500/15 text-cyan-100"
-                  : "border border-slate-700/80 text-slate-300 hover:border-cyan-300/40 hover:text-cyan-100"
-              }`}
-            >
-              All
-            </button>
+          <div className="mt-8 flex flex-wrap gap-2">
             {projectCategories.map((category) => (
               <button
                 key={category}
                 type="button"
                 onClick={() => setActiveCategory(category)}
-                className={`rounded-md px-3 py-1.5 text-sm transition ${
+                className={`rounded-md px-3.5 py-1.5 text-sm transition-all duration-300 ${
                   activeCategory === category
-                    ? "border border-cyan-200/40 bg-cyan-500/15 text-cyan-100"
+                    ? "border border-cyan-200/50 bg-cyan-500/15 text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,0.2)]"
                     : "border border-slate-700/80 text-slate-300 hover:border-cyan-300/40 hover:text-cyan-100"
                 }`}
               >
@@ -95,11 +116,23 @@ export function ProjectsSection() {
             ))}
           </div>
 
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
-            ))}
-          </div>
+          {activeCategory === "Featured" ? (
+            <div className="mt-8 grid gap-5 lg:grid-cols-2" key="featured-grid">
+              {featuredProjects.map((project, index) => (
+                <div key={project.title} className="animate-fade-up" style={{ animationDelay: `${index * 0.12}s` }}>
+                  <ProjectCard project={project} emphasize />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-8 grid gap-4 md:grid-cols-2" key={`filtered-${activeCategory}`}>
+              {filteredProjects.map((project, index) => (
+                <div key={project.title} className="animate-fade-up" style={{ animationDelay: `${index * 0.09}s` }}>
+                  <ProjectCard project={project} />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
