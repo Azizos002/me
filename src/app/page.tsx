@@ -1,7 +1,25 @@
+import { HeroSection } from "@/components/hero/HeroSection";
+import { PortfolioNavbar } from "@/components/layout/PortfolioNavbar";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { SkillsSection } from "@/components/sections/SkillsSection";
+
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <h1 className="text-center text-4xl mt-20">Portfolio Loading...</h1>
-    </main>
+    <>
+      <PortfolioNavbar />
+
+      <main>
+        <section id="home">
+          <HeroSection />
+        </section>
+
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ContactSection />
+      </main>
+    </>
   );
 }
