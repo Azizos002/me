@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const MAX_MESSAGE_LENGTH = 5000;
+const MAX_NAME_LENGTH = 120;
+const MAX_EMAIL_LENGTH = 254;
 
 const escapeHtml = (value: string) =>
   value
@@ -34,9 +37,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: "Message is required." }, { status: 400 });
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.CONTACT_TO_EMAIL;
-    const from = process.env.CONTACT_FROM_EMAIL;
+    if (trimmedName.length > MAX_NAME_LENGTH) {
+      return NextResponse.json({ success: false, error: "Name is too long." }, { status: 400 });
+    }
+
+    if (trimmedEmail.length > MAX_EMAIL_LENGTH) {
+      return NextResponse.json({ success: false, error: "Email is too long." }, { status: 400 });
+    }
+
+    if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json({ success: false, error: "Message is too long." }, { status: 400 });
+    }
+
+    const apiKey = process.env.RESEND_API_KEY?.trim();
+    const to = process.env.CONTACT_TO_EMAIL?.trim();
+    const from = process.env.CONTACT_FROM_EMAIL?.trim();
 
     if (!apiKey || !to || !from) {
       return NextResponse.json(
@@ -162,8 +177,12 @@ export async function POST(request: Request) {
 
     if (!resendResponse.ok) {
       const errorText = await resendResponse.text();
+      console.error("Contact API: Resend request failed", {
+        status: resendResponse.status,
+        errorText,
+      });
       return NextResponse.json(
-        { success: false, error: `Failed to send email. ${errorText}` },
+        { success: false, error: "Failed to send email. Please try again later." },
         { status: 502 }
       );
     }
