@@ -1,6 +1,9 @@
 import { HeroSection } from "@/components/hero/HeroSection";
 import { PortfolioNavbar } from "@/components/layout/PortfolioNavbar";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { SectionShell } from "@/components/sections/SectionShell";
+import { SkillsSection } from "@/components/sections/SkillsSection";
 
 export default function Home() {
   return (
@@ -12,23 +15,9 @@ export default function Home() {
           <HeroSection />
         </section>
 
-        <SectionShell
-          id="about"
-          title="About"
-          subtitle="Section framework ready for your background, philosophy, and professional story."
-        />
-
-        <SectionShell
-          id="skills"
-          title="Skills"
-          subtitle="Section framework ready for your technical stack, tools, and domain expertise."
-        />
-
-        <SectionShell
-          id="projects"
-          title="Projects"
-          subtitle="Section framework ready for selected case studies and premium project showcases."
-        />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
 
         <SectionShell
           id="contact"
